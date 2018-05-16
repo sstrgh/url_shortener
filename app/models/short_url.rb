@@ -4,7 +4,7 @@ class ShortUrl < ApplicationRecord
   BASE_62_ENC = ('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a.collect{|i| i.to_s}
   SHORT_ID_LENGTH = 6
 
-  validates :base_url, format: { with: URL_REGEXP, message: 'Invalid URL' }
+  validates :base_url, format: { with: URL_REGEXP }
   validates :base_url, presence: true, on: :create
 
   before_create :sanitize_url
