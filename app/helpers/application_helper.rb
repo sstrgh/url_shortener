@@ -5,6 +5,8 @@ module ApplicationHelper
         "alert-success"
       when 'error'
         "alert-danger"
+      when 'notice'
+        "alert-warning"
       else
         flash_type.to_s
     end

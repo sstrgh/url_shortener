@@ -24,8 +24,4 @@ class ShortUrl < ApplicationRecord
       self.shortened_url = shortened_url
   end
 
-  def is_new_url
-    !ShortUrl.find_by_base_url(self.base_url).present?
-  end
-
 end

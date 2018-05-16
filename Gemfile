@@ -10,6 +10,7 @@ gem 'bootstrap', '~> 4.0.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.7.2'
+  gem 'byebug'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'capybara', '~> 2.16.1'

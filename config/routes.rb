@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'short_urls#new'
 
   get '/new' => 'short_urls#new'
-  get '/:short_url', to: 'short_urls#show'
+  get '/show' => 'short_urls#show'
   post '/short_urls' => 'short_urls#create'
 
 end
