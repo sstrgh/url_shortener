@@ -14,7 +14,18 @@ class ShortUrl < ApplicationRecord
   end
 
   def generate_short_url
-    shortened_url = BASE_62_ENC.sample(SHORT_ID_LENGTH).join
+    needs_regenerate = true
+
+    while (needs_regenerate)
+      shortened_url = BASE_62_ENC.sample(SHORT_ID_LENGTH).join
+      needs_regenerate = ShortUrl.find_by_shortened_url(shortened_url).present?
+    end
+
+      self.shortened_url = shortened_url
+  end
+
+  def is_new_url
+    !ShortUrl.find_by_base_url(self.base_url).present?
   end
 
 end

@@ -1,0 +1,23 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col">
+      <h1 class="display-1">Url Shortener</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <%= form_tag('/short_urls', {method: :post, class: "form-group"}) do %>
+
+        <div class="form-group">
+          <%= label_tag 'Enter Url Here', nil, class: 'small_label' %>
+          <%= text_field_tag :base_url, params[:base_url], class: "form-control" %>
+        </div>
+
+        <%= submit_tag 'Generate Short Url', class: "btn btn-primary"%>
+      <% end %>
+    </div>
+  </div>
+
+</div>

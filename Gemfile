@@ -9,9 +9,16 @@ gem 'turbolinks', '~> 5'
 gem 'bootstrap', '~> 4.0.0'
 
 group :development, :test do
-  gem 'byebug'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.7.2'
   gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'capybara', '~> 2.16.1'
+  gem 'selenium-webdriver', '~> 3.8.0'
+  gem 'chromedriver-helper', '~> 1.1.0'
+end
+
+group :test do
+  gem 'database_cleaner'
 end
 
 group :development do
