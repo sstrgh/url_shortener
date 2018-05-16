@@ -13,4 +13,10 @@ RSpec.describe ShortUrl, type: :model do
    expect(short_url.base_url).to eq "https://www.google.com/"
  end
 
+ it "returns a 6 char short_url code" do
+   short_url = ShortUrl.create(base_url: "https://www.google.com/")
+   expect(short_url.generate_short_url.length).to eq 6
+
+ end
+
 end

@@ -1,6 +1,8 @@
 class ShortUrl < ApplicationRecord
 
   URL_REGEXP = /\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?\Z/ix
+  BASE_62_ENC = ('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a.collect{|i| i.to_s}
+  SHORT_ID_LENGTH = 6
 
   validates :base_url, format: { with: URL_REGEXP, message: 'Invalid URL' }
   validates :base_url, presence: true, on: :create
@@ -9,6 +11,10 @@ class ShortUrl < ApplicationRecord
 
   def sanitize_url
     self.base_url = self.base_url.downcase.strip
+  end
+
+  def generate_short_url
+    shortened_url = BASE_62_ENC.sample(SHORT_ID_LENGTH).join
   end
 
 end
