@@ -1,5 +1,5 @@
 # URL SHORTENER
-#### [URL SHORTENER](https://sunny-url-shortener.herokuapp.com/) on Heroku
+#### [URL SHORTENER](https://ai-links.herokuapp.com/) on Heroku
 
 ## Assumptions
 1. Statistics on the shortened url is not mission critical, application layer tracker might not work well due to  crawlers.
