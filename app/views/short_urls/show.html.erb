@@ -21,14 +21,23 @@
       <div class="col-md-4 mx-auto url-results">
           <div class="form-group">
             <%= label_tag 'Shortened Url:', nil, class: 'small_label' %>
-            <%= text_field_tag :base_url, request.host_with_port + "/" + @short_url.shortened_url, class: "form-control url-text-field", readonly: true%>
+            <%= text_field_tag :shortened_url, request.host_with_port + "/" + @short_url.shortened_url, class: "form-control url-text-field", readonly: true%>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mx-auto url-results">
+          <div class="form-group">
+            <%= label_tag 'Number of Visits:', nil, class: 'small_label' %>
+            <%= text_field_tag :visits, @short_url.total_visits, class: "form-control url-text-field", readonly: true%>
           </div>
       </div>
     </div>
 
     <div class="row mt-4">
       <div class="col links">
-        <%= link_to 'Visit URL', "/#{@short_url.shortened_url}", class: "btn btn-primary btn-sm"%>
+        <%= link_to 'Visit URL', "/#{@short_url.shortened_url}", class: "btn btn-primary btn-sm", target: :_blank%>
         <%= link_to 'Shorten a URL', new_path, class: "btn btn-primary btn-sm"%>
       </div>
     </div>

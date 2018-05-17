@@ -54,11 +54,18 @@ class ShortUrlsController < ApplicationController
   def reroute
     @short_url = ShortUrl.find_by_shortened_url(params[:short_url])
     if @short_url.present?
-      redirect_to @short_url.base_url
+      @short_url.total_visits += 1
     else
       flash[:error] = "URL not found, please try again."
       redirect_to :action => "new"
+      return
     end
+
+    if @short_url.save
+      redirect_to @short_url.base_url
+      return
+    end
+
   end
 
 end
