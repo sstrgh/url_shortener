@@ -1,17 +1,36 @@
-<div class="container">
+<div class="row base-element">
+  <div class="col align-self-center">
 
-  <div class="row">
-    <div class="col">
-      <h1 class="display-1">Url Shortener</h1>
+    <div class="row">
+      <div class="col title">
+        <h1 class="display-2 ">AI LINKS</h1>
+        <h6 class="subtitle"> Not Artificially Intelligent, Just 矮 </h6>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mx-auto url-results">
+          <div class="form-group">
+            <%= label_tag 'Base Url:', nil, class: 'small_label' %>
+            <%= text_field_tag :base_url, @short_url.base_url.to_s, class: "form-control url-text-field", readonly: true%>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mx-auto url-results">
+          <div class="form-group">
+            <%= label_tag 'Shortened Url:', nil, class: 'small_label' %>
+            <%= text_field_tag :base_url, request.host_with_port + "/" + @short_url.shortened_url, class: "form-control url-text-field", readonly: true%>
+          </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col links">
+        <%= link_to 'Visit URL', "/#{@short_url.shortened_url}", class: "btn btn-primary btn-sm"%>
+        <%= link_to 'Shorten a URL', new_path, class: "btn btn-primary btn-sm"%>
+      </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col">
-      Base Url: <%= @short_url.base_url.to_s %>
-      <br>
-      Shortened Url: <%= request.host_with_port + "/" + @short_url.shortened_url %>
-    </div>
-  </div>
-
 </div>

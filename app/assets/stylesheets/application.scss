@@ -1,1 +1,31 @@
-@import 'bootstrap'; 
+@import 'bootstrap';
+.title {
+  text-align: center;
+}
+
+.subtitle {
+  margin-top: -16px;
+  color: grey;
+  font-family: fantasy;
+}
+
+.links {
+  text-align: center;
+}
+
+.url-results {
+  text-align: center;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.base-element {
+  height: 75vh;
+}
+
+.url-text-field{
+  text-align: center;
+}
