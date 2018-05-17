@@ -37,10 +37,17 @@ class ShortUrlsController < ApplicationController
   def show
     @short_url = ShortUrl.find_by_base_url(params[:base_url])
 
-    # Reroutes back to new if the base_url is not found
-    if !@short_url.present?
-      flash[:notice] = "URL not found, please try again."
-      redirect_to :action => "new"
+    respond_to do |format|
+      format.html {
+        # Reroutes back to new if the base_url is not found
+        if !@short_url.present?
+          flash[:notice] = "URL not found, please try again."
+          redirect_to :action => "new"
+        end
+      }
+      format.json {
+        render json: @short_url
+      }
     end
 
   end
