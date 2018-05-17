@@ -21,6 +21,17 @@ class ShortUrlsController < ApplicationController
       return
     end
 
+    # Generates short url and if saves, redirects to show page
+    @short_url.generate_short_url
+    if @short_url.save
+      flash[:success] = "Successfully shortened URL!"
+      redirect_to :action => "show", base_url: @short_url.base_url
+      return
+    else
+      flash[:error] = "Failed to shortened URL"
+      redirect_to :action => "new"
+    end
+
   end
 
   def show
@@ -35,7 +46,19 @@ class ShortUrlsController < ApplicationController
 
   end
 
+
+  # Redirects to base_url if the shortened_url is appended directly to the host
+  # Todo:
+  # Integrations tests for external link routing on capybara is configuration heavy
+  # Given the time contraints and the objective of this exercise, I've decided to skip it.
   def reroute
+    @short_url = ShortUrl.find_by_shortened_url(params[:short_url])
+    if @short_url.present?
+      redirect_to @short_url.base_url
+    else
+      flash[:error] = "URL not found, please try again."
+      redirect_to :action => "new"
+    end
   end
 
 end

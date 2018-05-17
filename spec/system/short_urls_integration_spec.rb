@@ -28,4 +28,19 @@ RSpec.describe "Short URLS", type: :system do
       expect(page).to have_content '127.0.0.1/as12Gx'
   end
 
+  it "flashes error when a invalid url is provided" do
+    visit root_path
+    FactoryBot.create(:short_url)
+    fill_in('base_url', :with => 'https://www.amazon.com/')
+
+    click_button('Generate Short Url')
+    expect(page).to have_content "Successfully shortened URL"
+    expect(page).to have_css 'div.alert-success'
+    expect(page).to have_content 'https://www.amazon.com/'
+
+    ShortUrl.all.each do |short_url|
+      expect(short_url.shortened_url.length).to eq 6
+    end
+  end
+
 end
