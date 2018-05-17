@@ -43,4 +43,11 @@ RSpec.describe "Short URLS", type: :system do
     end
   end
 
+  it "redirects to proper show page when base_url is provided" do
+    short_url = FactoryBot.create(:short_url)
+    visit root_path + "show?base_url=" + short_url.base_url
+    expect(page).to have_field('base_url', with:short_url.base_url)
+    expect(page).to have_field('shortened_url', with: '127.0.0.1/' + short_url.shortened_url)
+  end
+
 end
