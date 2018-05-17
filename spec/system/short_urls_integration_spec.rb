@@ -4,7 +4,7 @@ RSpec.describe "Short URLS", type: :system do
 
   it "User visits new" do
       visit root_path
-      expect(page).to have_content "Url Shortener"
+      expect(page).to have_content "AI LINKS"
   end
 
   it "flashes error when a invalid url is provided" do
@@ -24,11 +24,11 @@ RSpec.describe "Short URLS", type: :system do
       click_button('Generate Short Url')
       expect(page).to have_content "URL has already been shortened before. Please find details below."
       expect(page).to have_css 'div.alert-warning'
-      expect(page).to have_content 'https://www.google.com/'
-      expect(page).to have_content '127.0.0.1/as12Gx'
+      expect(page).to have_field('base_url', with:'https://www.google.com/')
+      expect(page).to have_field('shortened_url', with:'127.0.0.1/as12Gx')
   end
 
-  it "flashes error when a invalid url is provided" do
+  it "Creates shortened url when url provided is new" do
     visit root_path
     FactoryBot.create(:short_url)
     fill_in('base_url', :with => 'https://www.amazon.com/')
@@ -36,7 +36,7 @@ RSpec.describe "Short URLS", type: :system do
     click_button('Generate Short Url')
     expect(page).to have_content "Successfully shortened URL"
     expect(page).to have_css 'div.alert-success'
-    expect(page).to have_content 'https://www.amazon.com/'
+    expect(page).to have_field('base_url', with:'https://www.amazon.com/')
 
     ShortUrl.all.each do |short_url|
       expect(short_url.shortened_url.length).to eq 6
