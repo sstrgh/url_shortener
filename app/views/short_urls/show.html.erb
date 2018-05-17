@@ -10,7 +10,7 @@
     <div class="col">
       Base Url: <%= @short_url.base_url.to_s %>
       <br>
-      Shortened Url: <%= "https://" + request.host_with_port + "/" + @short_url.shortened_url %>
+      Shortened Url: <%= request.host_with_port + "/" + @short_url.shortened_url %>
     </div>
   </div>
 

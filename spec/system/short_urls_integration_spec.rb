@@ -25,8 +25,7 @@ RSpec.describe "Short URLS", type: :system do
       expect(page).to have_content "URL has already been shortened before. Please find details below."
       expect(page).to have_css 'div.alert-warning'
       expect(page).to have_content 'https://www.google.com/'
-      expect(page).to have_content 'https://127.0.0.1/as12Gx'
+      expect(page).to have_content '127.0.0.1/as12Gx'
   end
-
 
 end

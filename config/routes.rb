@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get '/new' => 'short_urls#new'
   get '/show' => 'short_urls#show'
+  get '/:short_url' => 'short_urls#reroute'
   post '/short_urls' => 'short_urls#create'
 
 end
